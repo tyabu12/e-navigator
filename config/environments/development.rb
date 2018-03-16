@@ -51,4 +51,9 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Check if we use Docker to allow docker ip through web-console
+  if File.file?('/.dockerenv') && ENV.key?('DOCKER_HOST_IP')
+    config.web_console.whitelisted_ips = ENV.fetch('DOCKER_HOST_IP')
+  end
 end
