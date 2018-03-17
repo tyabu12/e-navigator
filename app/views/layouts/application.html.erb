@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ENavigator</title>
+    <title>e-Navigator</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -9,6 +9,20 @@
   </head>
 
   <body>
+    <header>
+        <nav>
+            <% if user_signed_in? %>
+                <%= link_to current_user.name, edit_user_registration_path %>
+                <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+            <% else %>
+                <%= link_to 'Sign up', new_user_registration_path %>
+                <%= link_to 'Log in', new_user_session_path %>
+            <% end %>
+        </nav>
+    </header>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
   </body>
 </html>

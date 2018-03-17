@@ -56,4 +56,10 @@ Rails.application.configure do
   if File.file?('/.dockerenv') && ENV.key?('DOCKER_HOST_IP')
     config.web_console.whitelisted_ips = ENV.fetch('DOCKER_HOST_IP')
   end
+
+  config.action_mailer.default_url_options = {
+    host: 'localhost',
+    port: 5000
+  }
+
 end
