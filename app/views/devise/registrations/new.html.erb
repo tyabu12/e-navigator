@@ -6,7 +6,7 @@
   <div class="form-group">
     <%= f.label :email %>:
     <%= f.email_field :email, autofocus: true, autocomplete: "email",
-      class: "form-control"
+      class: "form-control", placeholder: "example@example.com"
     %>
   </div>
 
@@ -28,31 +28,6 @@
     <%= f.password_field :password_confirmation, autocomplete: "off",
       class: "form-control"
     %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :name %>:<br>
-    <%= f.text_field :name, autocomplete: "off", class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :birthday %>:<br>
-    <%= f.date_select :birthday,
-      start_year: Date.today.year-150, end_year: Date.today.year %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :gender %>:<br>
-    <%= f.collection_radio_buttons(:gender, User.genders, :first, :first) do |b| %>
-      <%= b.label(class: "radio-inline") do %>
-        <%= b.radio_button + User.genders_i18n[b.text] %>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :school_name %>:
-    <%= f.text_field :school_name, autocomplete: "off", class: "form-control" %>
   </div>
 
   <div class="actions">

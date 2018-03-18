@@ -6,7 +6,7 @@
   <div class="form-group">
     <%= f.label :email %>:
     <%= f.email_field :email, autofocus: true, autocomplete: "email",
-      class: "form-control"
+      class: "form-control", placeholder: "example@example.com"
     %>
   </div>
 
@@ -26,7 +26,7 @@
     :
     <%= f.password_field :password, autocomplete: "off",
       class: "form-control",
-      placeholder: "Leave blank if you don't want to change it."
+      placeholder: t("registrations.leave_blank")
     %>
   </div>
 
@@ -41,13 +41,15 @@
     <%= f.label :current_password %>:
     <%= f.password_field :current_password, autocomplete: "off",
       class: "form-control",
-      placeholder: "We need your current password to confirm your changes."
+      placeholder: t("registrations.need_password")
     %>
   </div>
 
   <div class="form-group">
     <%= f.label :name %>:
-    <%= f.text_field :name, autocomplete: "off", class: "form-control" %>
+    <%= f.text_field :name, autocomplete: "off", class: "form-control",
+      placeholder: t("registrations.example_name")
+    %>
   </div>
 
   <div class="form-group">
@@ -67,7 +69,9 @@
 
   <div class="form-group">
     <%= f.label :school_name %>:
-    <%= f.text_field :school_name, autocomplete: "off", class: "form-control" %>
+    <%= f.text_field :school_name, autocomplete: "off", class: "form-control",
+      placeholder: t("registrations.example_shool_name")
+    %>
   </div>
 
   <div class="actions">
@@ -81,7 +85,7 @@
 
 <p>
   <%= button_to t("registrations.destroy"), registration_path(resource_name),
-    data: { confirm: t("registrations.confirm") },
+    data: { confirm: t("registrations.destroy_confirmation") },
     method: :delete
   %>
 </p>

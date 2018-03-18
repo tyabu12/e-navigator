@@ -26,10 +26,14 @@ ja:
     sign_up: ユーザー登録
     edit: ユーザー編集
     destroy: ユーザー削除
-    destroy_confirm: 本当に削除しますか？
+    destroy_confirmation: 本当に削除しますか？
     sign_in: ログイン
     sign_out: ログアウト
     forgot_password: パスワードを忘れましたか？
+    need_password: "変更を保存するには現在のパスワードを入力してください"
+    leave_blank: 変更しない場合は入力しないでください
+    example_name: "山田 太郎"
+    example_shool_name: "東都大学"
   page:
     move:
       next: 次へ

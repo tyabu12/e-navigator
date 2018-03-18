@@ -26,10 +26,14 @@ en:
     sign_up: "Sign up"
     edit: "Edit your profile"
     destroy: "Cancel your account"
-    destroy_confirm: "Are you sure?"
+    destroy_confirmation: "Are you sure?"
     sign_in: "Sign in"
     sign_out: "Sign out"
     forgot_password: "Forgot your password?"
+    need_password: "We need your current password to confirm your changes."
+    leave_blank: "Leave blank if you don't want to change it."
+    example_name: "John Smith"
+    example_shool_name: "Hogwarts School of Witchcraft and Wizardry"
   page:
     move:
       next: Next

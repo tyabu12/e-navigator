@@ -18,7 +18,7 @@
                 <ul class="navbar-nav">
                     <% if user_signed_in? %>
                         <li class="nav-item">
-                            <%= link_to current_user.name,
+                            <%= link_to t("registrations.edit"),
                                 edit_user_registration_path,
                                 class: "nav-link"
                             %>
