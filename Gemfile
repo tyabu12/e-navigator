@@ -46,4 +46,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# Use devise for user registration and edit
 gem 'devise'
+
+# Use Bootstrap4 design
+gem 'bootstrap', '~> 4.0.0'
+# Bootstrap JavaScript depends on jQuery
+gem 'jquery-rails'

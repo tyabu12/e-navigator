@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>e-Navigator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -9,20 +11,48 @@
   </head>
 
   <body>
-    <header>
-        <nav>
-            <% if user_signed_in? %>
-                <%= link_to current_user.name, edit_user_registration_path %>
-                <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-            <% else %>
-                <%= link_to 'Sign up', new_user_registration_path %>
-                <%= link_to 'Log in', new_user_session_path %>
-            <% end %>
-        </nav>
-    </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-expand-sm bg-light navbar-light">
+                <a class="navbar-brand" href="/">e-Navigator</a>
+                <ul class="navbar-nav">
+                    <% if user_signed_in? %>
+                        <li class="nav-item">
+                            <%= link_to current_user.name, edit_user_registration_path,
+                                class: "nav-link" %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to 'Log out', destroy_user_session_path, method: :delete,
+                                class: "nav-link" %>
+                        </li>
+                    <% else %>
+                        <li class="nav-item">
+                            <%= link_to 'Sign up', new_user_registration_path,
+                                class: "nav-link" %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to 'Log in', new_user_session_path,
+                                class: "nav-link" %>
+                        </li>
+                    <% end %>
+                </ul>
+            </nav>
+        </header>
 
-    <%= yield %>
+        <% if notice %>
+            <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <%= notice %>
+            </div>
+        <% end %>
+        <% if alert %>
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <%= alert %>
+            </div>
+        <% end %>
+
+        <%= yield %>
+    </div>
   </body>
 </html>

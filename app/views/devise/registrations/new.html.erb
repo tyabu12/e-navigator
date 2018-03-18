@@ -1,14 +1,14 @@
-<h2>Sign up</h2>
+<h1>Sign up</h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :email %>:<br>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :password %>
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -17,28 +17,32 @@
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :password_confirmation %>:<br>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %>:<br>
     <%= f.text_field :name, autocomplete: "off" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :birthday %>:<br>
     <%= f.date_select :birthday,
       start_year: Date.today.year-150, end_year: Date.today.year %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :gender %>:<br>
-    <%= f.collection_radio_buttons :gender, User.genders, :first, :first %>
+    <%= f.collection_radio_buttons(:gender, User.genders, :first, :first) do |b| %>
+      <%= b.label(class: "radio-inline") do %>
+        <%= b.radio_button + b.text %>
+      <% end %>
+    <% end %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :school_name %>:<br>
     <%= f.text_field :school_name, autocomplete: "off" %>
   </div>
@@ -47,5 +51,7 @@
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+
+<hr>
 
 <%= render "devise/shared/links" %>
