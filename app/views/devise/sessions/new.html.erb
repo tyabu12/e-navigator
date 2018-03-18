@@ -1,4 +1,4 @@
-<h1>Log in</h1>
+<h1><%= t "registrations.sign_in" %></h1>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-group">
@@ -19,7 +19,7 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit t("registrations.sign_in") %>
   </div>
 <% end %>
 

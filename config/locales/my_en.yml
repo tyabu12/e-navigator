@@ -1,0 +1,36 @@
+---
+en:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        email: E-mail
+        password: Password
+        password_confirmation: "Password (Confirmation)"
+        current_password: "Current password"
+        remember_me: "Remember me"
+        created_at: "Created at"
+        updated_at: "Updated at"
+        name: Name
+        birthday: Birthday
+        gender: Gender
+        school_name: "School name"
+  enums:
+    user:
+      gender:
+        male: Male
+        female: Female
+        other: Other
+  registrations:
+    sign_up: "Sign up"
+    edit: "Edit your profile"
+    destroy: "Cancel your account"
+    destroy_confirm: "Are you sure?"
+    sign_in: "Sign in"
+    sign_out: "Sign out"
+    forgot_password: "Forgot your password?"
+  page:
+    move:
+      next: Next
+      back: Back

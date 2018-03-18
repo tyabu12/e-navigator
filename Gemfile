@@ -53,3 +53,5 @@ gem 'devise'
 gem 'bootstrap', '~> 4.0.0'
 # Bootstrap JavaScript depends on jQuery
 gem 'jquery-rails'
+
+gem 'enum_help'
