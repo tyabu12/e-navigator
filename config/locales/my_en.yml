@@ -38,3 +38,6 @@ en:
     move:
       next: Next
       back: Back
+  helpers:
+    welcome: Welcome
+    show_name: "%{name}"

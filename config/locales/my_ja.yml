@@ -38,3 +38,6 @@ ja:
     move:
       next: 次へ
       back: 戻る
+  helpers:
+    welcome: ようこそ
+    show_name: "%{name}さん"

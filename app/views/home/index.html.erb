@@ -1,1 +1,5 @@
-<h1>Home#index</h1>
+<h1>
+  <%= t('helpers.welcome') + " " +
+    t('helpers.show_name', :name => current_user.name)
+  %>
+</h1>
