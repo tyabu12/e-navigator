@@ -31,6 +31,9 @@ module ENavigator
     # デフォルト言語を日本語に
     config.i18n.default_locale = :ja
 
+    # 時刻はOSローカル時間で保存
+    config.active_record.default_timezone = :local
+
     # form_for のエラーが生成する <div class="field_with_errors"></div> を無効化
     # http://guides.rubyonrails.org/configuring.html#configuring-action-view
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
