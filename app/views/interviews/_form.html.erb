@@ -1,4 +1,4 @@
-<%= form_with(model: interview, local: true) do |form| %>
+<%= form_with(model: [@user, interview], local: true) do |form| %>
   <% if interview.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(interview.errors.count, "error") %> prohibited this interview from being saved:</h2>
@@ -11,19 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.datetime_select :start_time, id: :interview_start_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status, id: :interview_status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :interview_user_id %>
+  <div class="form-group">
+    <%= form.label :start_time %>:<br>
+    <%= form.datetime_select :start_time, id: :interview_start_time,
+      start_year: Date.today.year %>
   </div>
 
   <div class="actions">

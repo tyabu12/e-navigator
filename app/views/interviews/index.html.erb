@@ -1,31 +1,32 @@
-<p id="notice"><%= notice %></p>
+<h1>Interviews: <%= @user.name %></h1>
 
-<h1>Interviews</h1>
-
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>Start time</th>
-      <th>Status</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th scope="col" class="text-center">Start time</th>
+      <th scope="col" class="text-center">Status</th>
+      <th scope="col" colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @interviews.each do |interview| %>
       <tr>
-        <td><%= interview.start_time %></td>
-        <td><%= interview.status %></td>
-        <td><%= interview.user %></td>
-        <td><%= link_to 'Show', interview %></td>
-        <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
-        <td><%= link_to 'Destroy', interview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope="row" class="text-center"><%= l(interview.start_time.in_time_zone, format: :long) %></th>
+        <td class="text-center"><%= interview.status %></td>
+        <td class="text-center">
+          <%= link_to 'Edit', edit_user_interview_path(@user, interview),
+            class: "btn btn-primary" %>
+        </td>
+        <td class="text-center">
+          <%= link_to 'Destroy', user_interview_path(@user, interview), method: :delete,
+            data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<hr>
 
-<%= link_to 'New Interview', new_interview_path %>
+<%= link_to 'New Interview', new_user_interview_path, class: "btn btn-primary" %>

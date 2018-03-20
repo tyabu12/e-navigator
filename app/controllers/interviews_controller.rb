@@ -1,34 +1,36 @@
 class InterviewsController < ApplicationController
+  before_action :set_user
   before_action :set_interview, only: [:show, :edit, :update, :destroy]
 
-  # GET /interviews
-  # GET /interviews.json
+  # GET /users/:user_id/interviews
+  # GET /users/:user_id/interviews.json
   def index
-    @interviews = Interview.all
+    @interviews = @user.interviews.order("start_time")
   end
 
-  # GET /interviews/1
-  # GET /interviews/1.json
+  # GET /users/:user_id/interviews/:id
+  # GET /users/:user_id/interviews/:id.json
   def show
   end
 
-  # GET /interviews/new
+  # GET /users/:user_id/interviews/new
   def new
-    @interview = Interview.new
+    @interview = @user.interviews.build
   end
 
-  # GET /interviews/1/edit
+  # GET /users/:user_id/interviews/:id/edit
   def edit
   end
 
-  # POST /interviews
-  # POST /interviews.json
+  # POST /users/:user_id/interviews
+  # POST /users/:user_id/interviews.json
   def create
-    @interview = Interview.new(interview_params)
+    @interview = @user.interviews.build(interview_params)
 
     respond_to do |format|
       if @interview.save
-        format.html { redirect_to @interview, notice: 'Interview was successfully created.' }
+        format.html { redirect_to user_interview_path(@user, @interview),
+          notice: 'Interview was successfully created.' }
         format.json { render :show, status: :created, location: @interview }
       else
         format.html { render :new }
@@ -37,12 +39,13 @@ class InterviewsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /interviews/1
-  # PATCH/PUT /interviews/1.json
+  # PATCH/PUT /users/:user_id/interviews/:id
+  # PATCH/PUT /users/:user_id/interviews/:id.json
   def update
     respond_to do |format|
       if @interview.update(interview_params)
-        format.html { redirect_to @interview, notice: 'Interview was successfully updated.' }
+        format.html { redirect_to user_interview_path(@user, @interview),
+          notice: 'Interview was successfully updated.' }
         format.json { render :show, status: :ok, location: @interview }
       else
         format.html { render :edit }
@@ -51,20 +54,25 @@ class InterviewsController < ApplicationController
     end
   end
 
-  # DELETE /interviews/1
-  # DELETE /interviews/1.json
+  # DELETE /users/:user_id/interviews/:id
+  # DELETE /users/:user_id/interviews/:id.json
   def destroy
     @interview.destroy
     respond_to do |format|
-      format.html { redirect_to interviews_url, notice: 'Interview was successfully destroyed.' }
+      format.html { redirect_to user_interviews_url(@user),
+        notice: 'Interview was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
     def set_interview
-      @interview = Interview.find(params[:id])
+      @interview = @user.interviews.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

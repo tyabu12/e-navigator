@@ -24,6 +24,12 @@
                             %>
                         </li>
                         <li class="nav-item">
+                            <%= link_to '面接一覧',
+                                user_interviews_path(current_user),
+                                class: "nav-link"
+                            %>
+                        </li>
+                        <li class="nav-item">
                             <%= link_to t("registrations.sign_out"),
                                 destroy_user_session_path,
                                 method: :delete,

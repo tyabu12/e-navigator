@@ -2,5 +2,7 @@
 
 <%= render 'form', interview: @interview %>
 
-<%= link_to 'Show', @interview %> |
-<%= link_to 'Back', interviews_path %>
+<hr>
+
+<%= link_to 'Show', user_interview_path, class: "btn btn-link" %> |
+<%= link_to t("page.move.back"), :back, class: "btn btn-link" %>
