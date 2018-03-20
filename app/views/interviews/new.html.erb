@@ -1,4 +1,4 @@
-<h1>New Interview</h1>
+<h1><%= t("interviews.new") %>: <%= t("helpers.show_name", :name => @user.name) %></h1>
 
 <%= render 'form', interview: @interview %>
 

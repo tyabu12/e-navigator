@@ -1,17 +1,17 @@
 <p>
-  <strong>User:</strong>
+  <strong><%= Interview.human_attribute_name("user") %>:</strong>
   <%= @interview.user.name %>
 </p>
 
 <p>
-  <strong>Start time:</strong>
+  <strong><%= Interview.human_attribute_name("start_time") %>:</strong>
   <%= @interview.start_time %>
 </p>
 
 <p>
-  <strong>Status:</strong>
-  <%= @interview.status %>
+  <strong><%= Interview.human_attribute_name("status") %>:</strong>
+  <%= @interview.status_i18n %>
 </p>
 
-<%= link_to 'Edit', edit_user_interview_path, class: "btn btn-link" %> |
+<%= link_to t("page.move.edit"), edit_user_interview_path, class: "btn btn-link" %> |
 <%= link_to t("page.move.back"), :back, class: "btn btn-link" %>

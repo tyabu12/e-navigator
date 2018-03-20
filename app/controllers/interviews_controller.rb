@@ -5,6 +5,7 @@ class InterviewsController < ApplicationController
   # GET /users/:user_id/interviews
   # GET /users/:user_id/interviews.json
   def index
+    # 開始時間順にソート
     @interviews = @user.interviews.order("start_time")
   end
 
@@ -30,7 +31,7 @@ class InterviewsController < ApplicationController
     respond_to do |format|
       if @interview.save
         format.html { redirect_to user_interview_path(@user, @interview),
-          notice: 'Interview was successfully created.' }
+          notice: t("interviews.created") }
         format.json { render :show, status: :created, location: @interview }
       else
         format.html { render :new }
@@ -45,7 +46,7 @@ class InterviewsController < ApplicationController
     respond_to do |format|
       if @interview.update(interview_params)
         format.html { redirect_to user_interview_path(@user, @interview),
-          notice: 'Interview was successfully updated.' }
+          notice: t("interviews.updated") }
         format.json { render :show, status: :ok, location: @interview }
       else
         format.html { render :edit }
@@ -60,7 +61,7 @@ class InterviewsController < ApplicationController
     @interview.destroy
     respond_to do |format|
       format.html { redirect_to user_interviews_url(@user),
-        notice: 'Interview was successfully destroyed.' }
+        notice: t("interviews.destroyed") }
       format.json { head :no_content }
     end
   end
