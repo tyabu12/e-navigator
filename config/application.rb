@@ -31,8 +31,11 @@ module ENavigator
     # デフォルト言語を日本語に
     config.i18n.default_locale = :ja
 
-    # 時刻はOSローカル時間で保存
-    config.active_record.default_timezone = :local
+    # タイムゾーン設定
+    config.time_zone = 'Tokyo'
+
+    # Heroku の PostgreSQL のデフォルトタイムゾーンはUTC
+    config.active_record.default_timezone = :utc
 
     # form_for のエラーが生成する <div class="field_with_errors"></div> を無効化
     # http://guides.rubyonrails.org/configuring.html#configuring-action-view
