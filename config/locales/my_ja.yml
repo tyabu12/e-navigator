@@ -17,6 +17,7 @@ ja:
         birthday: 生年月日
         gender: 性別
         school_name: 学校名
+        age: 年齢
       interview:
         user: ユーザー
         start_time: 開始時間
@@ -43,6 +44,8 @@ ja:
     leave_blank: 変更しない場合は入力しないでください
     example_name: "山田 太郎"
     example_shool_name: "東都大学"
+  users:
+    list: ユーザー一覧
   interviews:
     new: 面接登録
     list: 面接一覧

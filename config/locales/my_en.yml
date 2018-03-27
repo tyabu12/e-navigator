@@ -17,6 +17,7 @@ en:
         birthday: Birthday
         gender: Gender
         school_name: "School name"
+        age: Age
       interview:
         user: User
         start_time: "Starting time"
@@ -43,6 +44,8 @@ en:
     leave_blank: "Leave blank if you don't want to change it."
     example_name: "John Smith"
     example_shool_name: "Hogwarts School of Witchcraft and Wizardry"
+  users:
+    list: "Users"
   interviews:
     new: "New interview"
     list: "Interviews"
