@@ -1,0 +1,42 @@
+<h1><%= t("interviews.list") %>: <%= t("helpers.show_name", :name => @user.name) %></h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col" class="text-center">
+        <%= Interview.human_attribute_name("start_time") %>
+      </th>
+      <th scope="col" class="text-center">
+        <%= Interview.human_attribute_name("status") %>
+      </th>
+      <th scope="col" colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @interviews.each do |interview| %>
+      <tr>
+        <th scope="row" class="text-center">
+          <%= l(interview.start_time.in_time_zone, format: :long) %>
+        </th>
+        <td class="text-center"><%= interview.status_i18n %></td>
+        <td class="text-center">
+          <%= link_to t("page.move.edit"),
+            edit_user_interview_path(@user, interview),
+            class: "btn btn-primary" %>
+        </td>
+        <td class="text-center">
+          <%= link_to t("page.move.destroy"),
+            user_interview_path(@user, interview), method: :delete,
+            data: { confirm: t("helpers.destroy_confirmation") },
+            class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<%= link_to t("page.move.create"),
+  new_user_interview_path, class: "btn btn-primary" %>

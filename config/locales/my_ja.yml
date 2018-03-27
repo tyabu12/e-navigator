@@ -3,6 +3,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      interview: 面接
     attributes:
       user:
         email: メールアドレス
@@ -16,17 +17,25 @@ ja:
         birthday: 生年月日
         gender: 性別
         school_name: 学校名
+      interview:
+        user: ユーザー
+        start_time: 開始時間
+        status: 承認状態
   enums:
     user:
       gender:
         male: 男性
         female: 女性
         other: その他
+    interview:
+      status:
+        approved: 承認
+        on_hold: 保留
+        rejected: 却下
   registrations:
     sign_up: ユーザー登録
     edit: ユーザー編集
     destroy: ユーザー削除
-    destroy_confirmation: 本当に削除しますか？
     sign_in: ログイン
     sign_out: ログアウト
     forgot_password: パスワードを忘れましたか？
@@ -34,10 +43,21 @@ ja:
     leave_blank: 変更しない場合は入力しないでください
     example_name: "山田 太郎"
     example_shool_name: "東都大学"
+  interviews:
+    new: 面接登録
+    list: 面接一覧
+    edit: 面接編集
+    created: 面接を登録しました。
+    updated: 面接を更新しました。
+    destroyed: 面接を削除しました。
   page:
     move:
       next: 次へ
       back: 戻る
+      create: 登録
+      edit: 編集
+      destroy: 削除
   helpers:
     welcome: ようこそ
     show_name: "%{name}さん"
+    destroy_confirmation: 本当に削除しますか？

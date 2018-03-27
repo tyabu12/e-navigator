@@ -3,6 +3,7 @@ en:
   activerecord:
     models:
       user: User
+      interview: Interview
     attributes:
       user:
         email: E-mail
@@ -16,17 +17,25 @@ en:
         birthday: Birthday
         gender: Gender
         school_name: "School name"
+      interview:
+        user: User
+        start_time: "Starting time"
+        status: "Approval status"
   enums:
     user:
       gender:
         male: Male
         female: Female
         other: Other
+    interview:
+      status:
+        approved: Approved
+        on_hold: "On hold"
+        rejected: Rejected
   registrations:
     sign_up: "Sign up"
     edit: "Edit your profile"
     destroy: "Cancel your account"
-    destroy_confirmation: "Are you sure?"
     sign_in: "Sign in"
     sign_out: "Sign out"
     forgot_password: "Forgot your password?"
@@ -34,10 +43,21 @@ en:
     leave_blank: "Leave blank if you don't want to change it."
     example_name: "John Smith"
     example_shool_name: "Hogwarts School of Witchcraft and Wizardry"
+  interviews:
+    new: "New interview"
+    list: "Interviews"
+    edit: "Edit an interview"
+    created: "Interview was successfully created."
+    updated: "Interview was successfully updated."
+    destroyed: "Interview was successfully destroyed."
   page:
     move:
       next: Next
       back: Back
+      create: Create
+      edit: Edit
+      destroy: Destroy
   helpers:
     welcome: Welcome
     show_name: "%{name}"
+    destroy_confirmation: "Are you sure?"

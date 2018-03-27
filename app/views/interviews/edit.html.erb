@@ -1,0 +1,7 @@
+<h1><%= t("interviews.edit") %>: <%= t("helpers.show_name", :name => @user.name) %></h1>
+
+<%= render 'form', interview: @interview %>
+
+<hr>
+
+<%= link_to t("page.move.back"), :back, class: "btn btn-link" %>
