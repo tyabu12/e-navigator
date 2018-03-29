@@ -24,6 +24,9 @@
       <th scope="col" class="text-center">
         <%= User.human_attribute_name("school_name") %>
       </th>
+      <th scope="col" class="text-center">
+        <%= t("users.interview_time") %>
+      </th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -36,6 +39,12 @@
           <td class="text-center"><%= user.age %></td>
           <td class="text-center"><%= user.gender_i18n %></td>
           <td class="text-center"><%= user.school_name %></td>
+          <td class="text-center">
+            <%=
+              start_time = get_approved_interview_start_time user
+              start_time ? l(start_time, format: :long) : t("helpers.undecided")
+            %>
+          </td>
           <td class="text-center">
             <%= link_to t("interviews.list"),
               user_interviews_path(user.id),

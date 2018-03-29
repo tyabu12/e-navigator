@@ -46,6 +46,7 @@ ja:
     example_shool_name: "東都大学"
   users:
     list: ユーザー一覧
+    interview_time: 面接開始日時
   interviews:
     new: 面接登録
     list: 面接一覧
@@ -64,3 +65,4 @@ ja:
     welcome: ようこそ
     show_name: "%{name}さん"
     destroy_confirmation: 本当に削除しますか？
+    undecided: 未定

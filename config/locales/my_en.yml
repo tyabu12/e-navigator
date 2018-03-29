@@ -46,6 +46,7 @@ en:
     example_shool_name: "Hogwarts School of Witchcraft and Wizardry"
   users:
     list: "Users"
+    interview_time: "Interview Start Time"
   interviews:
     new: "New interview"
     list: "Interviews"
@@ -64,3 +65,4 @@ en:
     welcome: Welcome
     show_name: "%{name}"
     destroy_confirmation: "Are you sure?"
+    undecided: Undecided
