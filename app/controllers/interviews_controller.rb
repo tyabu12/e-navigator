@@ -1,7 +1,6 @@
 class InterviewsController < ApplicationController
   before_action :set_user
   before_action :set_interview, only: [:show, :edit, :update, :destroy]
-  before_action :my_interviews?
 
   # GET /users/:user_id/interviews
   # GET /users/:user_id/interviews.json
@@ -80,12 +79,5 @@ class InterviewsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def interview_params
       params.require(:interview).permit(:start_time, :status, :user_id)
-    end
-
-    def my_interviews?
-      # ログイン中ユーザーの面接一覧でないなら、ログインユーザーの面接一覧にとりあえずリダイレクト
-      if current_user.id != @user.id
-        redirect_to user_interviews_url(:user_id => current_user.id)
-      end
     end
 end

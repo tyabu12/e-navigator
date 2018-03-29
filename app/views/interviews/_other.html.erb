@@ -1,0 +1,24 @@
+<h2>面接日程</h2>
+
+<%# 承認済みの面接ID %>
+<% selected_interview_id = get_selected_interview ? get_selected_interview.id : nil %>
+
+<%# セレクトボックスの選択に応じて、更新する interview モデルを JS で動的に変更するため
+    form_with ではなく form_tag を使う                                          %>
+<%= form_tag({ controller: "interviews", action: "update", id: selected_interview_id || 0 },
+  method: :patch) do %>
+  <div class="form-group">
+    <%= select "interview", "status",
+      @interviews.pluck(:start_time, :id).map { |start_time, id| [
+        l(start_time, format: :long), # 面接開始時間
+        "approved", # 承認状態に更新 (値だと文字列になりエラー)
+        {
+          'data-action': user_interview_path(id: id), # data-action に指定した path が action になる
+          selected: id == selected_interview_id ? true : nil # 承認済みの面接日時を初期選択
+        }
+      ]},
+      :prompt => selected_interview_id ? nil : true # 承認日時なしならprompt表示
+    %>
+  </div>
+  <%= submit_tag t("helpers.submit.update") %>
+<% end %>
