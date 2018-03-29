@@ -3,14 +3,6 @@ class Interview < ApplicationRecord
 
   enum status: { approved: 0, on_hold: 1, rejected: 2 }
 
-  def set_approved
-    Interview.transaction do
-      Interview.where(status: "#{Interview.statuses[:approved]}")
-        .update_all(status: "#{Interview.statuses[:rejected]}")
-      self.update_attributes!(status: Interview.statuses[:approved])
-    end
-  end
-
   def update(attributes)
     # 承認状態を承認に変更するかで場合分け
     if attributes[:status] == "approved" && self.status != 'approved'
