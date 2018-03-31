@@ -29,7 +29,8 @@ class InterviewsController < ApplicationController
     @interview = @user.interviews.build(interview_params)
 
     respond_to do |format|
-      if @interview.save
+      # ログインユーザー以外の面接登録は禁止
+      if view_context.my_interview? && @interview.save
         format.html { redirect_to user_interview_path(@user, @interview),
           notice: t("interviews.created") }
         format.json { render :show, status: :created, location: @interview }
@@ -78,6 +79,12 @@ class InterviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def interview_params
-      params.require(:interview).permit(:start_time, :status, :user_id)
+      if view_context.my_interview?
+        # ログインユーザーのみ、面接開始日時を変更可能
+        params.require(:interview).permit(:start_time, :user_id)
+      else
+        # ログインユーザー以外のみ、面接承認状態を変更可能
+        params.require(:interview).permit(:status, :user_id)
+      end
     end
 end
