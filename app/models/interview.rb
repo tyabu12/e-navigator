@@ -8,7 +8,10 @@ class Interview < ApplicationRecord
     if attributes[:status] == 'approved' && self.status != :approved
       Interview.transaction do
         # 承認済みの面接がある場合は拒否に変更 (承認の面接は1件しかないと仮定する)
-        approved_interview = Interview.find_by(status: "#{Interview.statuses[:approved]}")
+        approved_interview = Interview.find_by(
+          user_id: user_id,
+          status: "#{Interview.statuses[:approved]}"
+        )
         if approved_interview
           approved_interview.update_attributes!(status: Interview.statuses[:rejected])
         end
