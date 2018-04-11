@@ -14,7 +14,8 @@ module InterviewsHelper
       :approved, # 承認状態に更新 (値だと文字列になりエラー)
       {
         'data-action': user_interview_path(id: id), # data-action に指定した path が action になる
-        selected: id == selected_interview_id ? true : nil # 承認済みの面接日時を初期選択
+        selected: id == selected_interview_id ? true : nil, # 承認済みの面接日時を初期選択
+        disabled: start_time.past? # 過去なら選択不可に
       }
     ]}
   end
