@@ -74,7 +74,10 @@ class InterviewsController < ApplicationController
     end
 
     def set_interview
-      @interview = @user.interviews.find(params[:id])
+      @interview = @user.interviews.find_by(id: params[:id])
+      # 面接日程の更新のセレクトボックスで、「選択してください」に無効な id を指定するので
+      # nil の場合は前のページにリダイレクト
+      redirect_back(fallback_location: root_path) if @interview.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
