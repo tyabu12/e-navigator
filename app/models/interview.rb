@@ -7,7 +7,7 @@ class Interview < ApplicationRecord
 
   def update(attributes)
     # 承認状態を承認に変更するかで場合分け
-    if attributes[:status] == 'approved' && self.status != :approved
+    if attributes[:status] == 'approved' && self.status != 'approved'
       Interview.transaction do
         # 承認済みの面接がある場合は拒否に変更 (承認の面接は1件しかないと仮定する)
         approved_interview = Interview.find_by(
@@ -15,7 +15,7 @@ class Interview < ApplicationRecord
           status: "#{Interview.statuses[:approved]}"
         )
         if approved_interview
-          approved_interview.update_attributes!(status: Interview.statuses[:rejected])
+          approved_interview.update_attribute(:status, Interview.statuses[:rejected])
         end
         # 対象の面接を承認に変更
         self.update!(attributes)

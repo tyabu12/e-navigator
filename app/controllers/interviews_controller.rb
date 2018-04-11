@@ -50,7 +50,8 @@ class InterviewsController < ApplicationController
           notice: t("interviews.updated") }
         format.json { render :show, status: :ok, location: @interview }
       else
-        format.html { render :edit }
+        format.html { redirect_back fallback_location: root_path,
+                                    alert: @interview.errors&.full_messages&.first }
         format.json { render json: @interview.errors, status: :unprocessable_entity }
       end
     end

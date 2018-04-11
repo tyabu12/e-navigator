@@ -5,12 +5,12 @@
 
 <%# セレクトボックスの選択に応じて、更新する interview モデルを JS で動的に変更するため
     form_with ではなく form_tag を使う                                          %>
-<%= form_tag({ controller: "interviews", action: "update", id: selected_interview_id || 0 },
+<%= form_tag({ controller: "interviews", action: "update", id: 0 },
   method: :patch) do %>
   <div class="form-group">
     <%= select "interview", "status",
       get_select_options(selected_interview_id),
-      :prompt => selected_interview_id ? nil : true # 承認日時なしならprompt表示
+      :prompt => true
     %>
   </div>
   <%= submit_tag t("helpers.submit.update") %>
