@@ -23,6 +23,8 @@ class Interview < ApplicationRecord
     else
       super attributes
     end
+  rescue StandardError
+    false
   end
 
   private
