@@ -5,12 +5,6 @@ class Interview < ApplicationRecord
 
   validate :valid_start_time?
 
-  private
-
-  def valid_start_time?
-    errors.add(:start_time, :cannot_be_past) unless start_time.future?
-  end
-
   def update(attributes)
     # 承認状態を承認に変更するかで場合分け
     if attributes[:status] == 'approved' && self.status != :approved
@@ -29,6 +23,12 @@ class Interview < ApplicationRecord
     else
       super attributes
     end
+  end
+
+  private
+
+  def valid_start_time?
+    errors.add(:start_time, :cannot_be_past) unless start_time.future?
   end
 
 end
