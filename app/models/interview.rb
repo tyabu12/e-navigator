@@ -5,6 +5,9 @@ class Interview < ApplicationRecord
 
   validate :valid_start_time?
 
+  # 承認状態削除は拒否
+  before_destroy :status_should_not_be_approved
+
   def update(attributes)
     # 承認状態を承認に変更するかで場合分け
     if attributes[:status] == 'approved' && self.status != 'approved'
@@ -21,6 +24,8 @@ class Interview < ApplicationRecord
         self.update!(attributes)
       end
     else
+      # 承認状態の更新は拒否
+      status_should_not_be_approved
       super attributes
     end
   rescue StandardError
@@ -31,6 +36,13 @@ class Interview < ApplicationRecord
 
   def valid_start_time?
     errors.add(:start_time, :cannot_be_past) unless start_time.future?
+  end
+
+  def status_should_not_be_approved
+    return true unless self.approved?
+
+    errors.add(:status, :should_not_be_accepted)
+    throw :abort
   end
 
 end

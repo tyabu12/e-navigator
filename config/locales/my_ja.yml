@@ -28,6 +28,8 @@ ja:
           attributes:
             start_time:
               cannot_be_past: に過去の日時は指定できません
+            status:
+              should_not_be_accepted: が承認された面接は変更・削除できません
   enums:
     user:
       gender:

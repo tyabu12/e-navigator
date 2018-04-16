@@ -60,11 +60,16 @@ class InterviewsController < ApplicationController
   # DELETE /users/:user_id/interviews/:id
   # DELETE /users/:user_id/interviews/:id.json
   def destroy
-    @interview.destroy
     respond_to do |format|
-      format.html { redirect_to user_interviews_url(@user),
-        notice: t("interviews.destroyed") }
-      format.json { head :no_content }
+      if @interview.destroy
+        format.html { redirect_to user_interviews_url(@user),
+          notice: t("interviews.destroyed") }
+        format.json { head :no_content }
+      else
+        format.html { redirect_back fallback_location: root_path,
+                                    alert: @interview.errors&.full_messages&.first }
+        format.json { render json: @interview.errors, status: :unprocessable_entity }
+      end
     end
   end
 
