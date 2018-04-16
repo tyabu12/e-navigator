@@ -13,5 +13,9 @@
   <%= @interview.status_i18n %>
 </p>
 
-<%= link_to t("page.move.edit"), edit_user_interview_path, class: "btn btn-link" %> |
+<%= link_to t("page.move.edit"),
+  # ログインユーザーと面接ユーザーが同じなら面接日時変更ページ、違うなら面接日程承認ページへ
+  my_interview? ? edit_user_interview_path : user_interviews_path,
+  class: "btn btn-link" %>
+|
 <%= link_to t("page.move.back"), :back, class: "btn btn-link" %>

@@ -1,0 +1,57 @@
+<h1>
+  <%= t('helpers.welcome') + " " +
+    t('helpers.show_name', :name => current_user.name)
+  %>
+</h1>
+
+<%# 自分以外のユーザー一覧を表示 %>
+<h2><%= t("users.list") %></h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col" class="text-center">
+        <%= User.human_attribute_name("name") %>
+      </th>
+      <th scope="col" class="text-center">
+        <%= User.human_attribute_name("email") %>
+      </th>
+      <th scope="col" class="text-center">
+        <%= User.human_attribute_name("age") %>
+      </th>
+      <th scope="col" class="text-center">
+        <%= User.human_attribute_name("gender") %>
+      </th>
+      <th scope="col" class="text-center">
+        <%= User.human_attribute_name("school_name") %>
+      </th>
+      <th scope="col" class="text-center">
+        <%= t("users.interview_time") %>
+      </th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <% if user.id != current_user.id %>
+        <tr>
+          <td class="text-center"><%= user.name %></td>
+          <td class="text-center"><%= user.email %></td>
+          <td class="text-center"><%= user.age %></td>
+          <td class="text-center"><%= user.gender_i18n %></td>
+          <td class="text-center"><%= user.school_name %></td>
+          <td class="text-center">
+            <%=
+              start_time = get_approved_interview_start_time user
+              start_time ? l(start_time, format: :long) : t("helpers.undecided")
+            %>
+          </td>
+          <td class="text-center">
+            <%= link_to t("interviews.list"),
+              user_interviews_path(user.id),
+              class: "btn btn-primary" %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
