@@ -14,4 +14,8 @@ class User < ApplicationRecord
     return (d2 - d1) / 10000
   end
 
+  def email_with_name
+    "#{self.name} <#{self.email}>"
+  end
+
 end

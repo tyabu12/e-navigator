@@ -44,8 +44,15 @@ class InterviewsController < ApplicationController
   # PATCH/PUT /users/:user_id/interviews/:id
   # PATCH/PUT /users/:user_id/interviews/:id.json
   def update
+    prev_status = @interview.status
     respond_to do |format|
       if @interview.update(interview_params)
+        # 承認状態に変更した場合は双方にメールを送信
+        if @interview.status != prev_status && @interview.approved?
+          NotifierMailer.interview_was_finalized(
+            current_user, @user, @interview
+          ).deliver_later
+        end
         format.html { redirect_to user_interview_path(@user, @interview),
           notice: t("interviews.updated") }
         format.json { render :show, status: :ok, location: @interview }
