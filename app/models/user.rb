@@ -18,4 +18,8 @@ class User < ApplicationRecord
     "#{self.name} <#{self.email}>"
   end
 
+  def self.all_except(id)
+    where.not(id: id)
+  end
+
 end

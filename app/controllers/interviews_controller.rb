@@ -80,6 +80,19 @@ class InterviewsController < ApplicationController
     end
   end
 
+  # POST /users/interviews/apply
+  # @user は面接希望日程の承認申請を送る相手
+  def apply
+    respond_to do |format|
+      if NotifierMailer.interview_apply(current_user, @user).deliver_later
+        format.html { redirect_to user_interviews_url(current_user),
+          notice: t("interviews.applyed") }
+      else
+        format.html { redirect_back fallback_location: root_path }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

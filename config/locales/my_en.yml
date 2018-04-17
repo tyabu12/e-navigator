@@ -59,9 +59,11 @@ en:
     new: "New interview"
     list: "Interviews"
     edit: "Edit an interview"
+    apply: Apply
     created: "Interview was successfully created."
     updated: "Interview was successfully updated."
     destroyed: "Interview was successfully destroyed."
+    applyed: "Your interview dates were applyed."
   page:
     move:
       next: Next
