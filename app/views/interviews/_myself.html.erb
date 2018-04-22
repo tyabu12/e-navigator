@@ -34,7 +34,8 @@
 </table>
 
 <% #面接希望の申請 %>
-<%= form_with url: { controller: :interviews, action: :apply } do |form| %>
+<%= form_with url: { controller: :interviews, action: :apply },
+  data: { remote: false } do |form| %>
   <div class="form-row align-items-center">
     <div class="col-sm-4">
       <%= form.select :user_id,
