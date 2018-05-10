@@ -28,6 +28,8 @@ ja:
           attributes:
             start_time:
               cannot_be_past: に過去の日時は指定できません
+            status:
+              should_not_be_accepted: が承認された面接は変更・削除できません
   enums:
     user:
       gender:
@@ -57,9 +59,11 @@ ja:
     new: 面接登録
     list: 面接一覧
     edit: 面接編集
+    apply: 申請
     created: 面接を登録しました。
     updated: 面接を更新しました。
     destroyed: 面接を削除しました。
+    applyed: 希望の面接日時を申請しました。
   page:
     move:
       next: 次へ

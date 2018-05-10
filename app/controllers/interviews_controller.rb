@@ -44,8 +44,15 @@ class InterviewsController < ApplicationController
   # PATCH/PUT /users/:user_id/interviews/:id
   # PATCH/PUT /users/:user_id/interviews/:id.json
   def update
+    prev_status = @interview.status
     respond_to do |format|
       if @interview.update(interview_params)
+        # 承認状態に変更した場合は双方にメールを送信
+        if @interview.status != prev_status && @interview.approved?
+          NotifierMailer.interview_was_finalized(
+            current_user, @user, @interview
+          ).deliver_later
+        end
         format.html { redirect_to user_interview_path(@user, @interview),
           notice: t("interviews.updated") }
         format.json { render :show, status: :ok, location: @interview }
@@ -60,11 +67,29 @@ class InterviewsController < ApplicationController
   # DELETE /users/:user_id/interviews/:id
   # DELETE /users/:user_id/interviews/:id.json
   def destroy
-    @interview.destroy
     respond_to do |format|
-      format.html { redirect_to user_interviews_url(@user),
-        notice: t("interviews.destroyed") }
-      format.json { head :no_content }
+      if @interview.destroy
+        format.html { redirect_to user_interviews_url(@user),
+          notice: t("interviews.destroyed") }
+        format.json { head :no_content }
+      else
+        format.html { redirect_back fallback_location: root_path,
+                                    alert: @interview.errors&.full_messages&.first }
+        format.json { render json: @interview.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # POST /users/interviews/apply
+  # @user は面接希望日程の承認申請を送る相手
+  def apply
+    respond_to do |format|
+      if NotifierMailer.interview_apply(current_user, @user).deliver_later
+        format.html { redirect_to user_interviews_url(current_user),
+          notice: t("interviews.applyed") }
+      else
+        format.html { redirect_back fallback_location: root_path }
+      end
     end
   end
 

@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   resources :users, only: [:index] do
     resources :interviews
   end
+
+  # user_id は必要なし
+  namespace :interviews do
+    post :apply
+  end
+
 end

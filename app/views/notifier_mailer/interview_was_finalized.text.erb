@@ -1,0 +1,11 @@
+<%= @current_user.name %> さん、<%= @interview_user.name %> さん
+
+<%= @interview_user.name %> さんの面接時間が <%= @current_user.name %> さんによって、以下の内容で、承認されました。
+
+面接日時: <%= l(@interview.start_time.in_time_zone, format: :long) %>
+
+よろしくお願い致します。
+
+---
+e-Navigator
+<%= root_url %>

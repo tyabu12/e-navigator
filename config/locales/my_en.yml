@@ -22,6 +22,14 @@ en:
         user: User
         start_time: "Starting time"
         status: "Approval status"
+    errors:
+      models:
+        interview:
+          attributes:
+            start_time:
+              cannot_be_past: "cannot be past time."
+            status:
+              should_not_be_accepted: ": You cannot modify accepted interview."
   enums:
     user:
       gender:
@@ -51,9 +59,11 @@ en:
     new: "New interview"
     list: "Interviews"
     edit: "Edit an interview"
+    apply: Apply
     created: "Interview was successfully created."
     updated: "Interview was successfully updated."
     destroyed: "Interview was successfully destroyed."
+    applyed: "Your interview dates were applyed."
   page:
     move:
       next: Next
